@@ -1,0 +1,15 @@
+<%= header_section %>
+  <title>テスト</title>
+
+<%= body_section %>
+  <div class="al-page-header">セッションテスト</div>
+  <p>
+    セッションID：<%=h AlSession::get_session_id() %><br>
+    リロードカウント：<%=h AlSession['reload_count'] %><br>
+    今回時刻：<%=h @now %><br>
+    前回時刻：<%=h AlSession['visit_before'] %><br>
+  </p>
+  <button onclick="location.reload()">リロード</button>
+  <button onclick="location.href='change_id.rb'">セッションID変更</button>
+
+<%= footer_section %>

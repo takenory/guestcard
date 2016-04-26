@@ -1,0 +1,14 @@
+<%= header_section %>
+  <title>新規登録／変更</title>
+
+<%= body_section %>
+  <div class="al-page-header">新規登録／変更</div>
+
+  <p><%= @result ? "完了しました" : "失敗しました" %></p>
+  <%= @form.make_tiny_sheet() %>
+
+  <div class="al-navigation">
+    <a href="<%=h Alone::make_uri() %>">最初へ</a>
+  </div>
+
+<%= footer_section %>

@@ -1,0 +1,99 @@
+<h4>
+  恐れ入りますが、Step1〜Step3の項目にご入力いただき<br />
+  ご来場の手続きを行ってください。
+</h4>
+
+<form action="/index.rb">
+  <fieldset title="Step 1">
+    <legend>代表者の方のお名前と所属をご入力ください</legend>
+    <!-- inputs -->
+    <div class="row form-group-lg">
+      <label for="name">代表者名</label>
+      <div class="col-xs-6">
+        <input id="name" type="text" class="form-control input-lg">
+      </div>
+    </div>
+    <div class="row form-group-lg">
+      <label for="organization">所属</label>
+      <div class="col-xs-6">
+        <input id="organization" type="text" class="form-control input-lg">
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset title="Step 2">
+    <legend>ご訪問の人数、ご用件をご入力ください</legend>
+    <!-- inputs -->
+    <div class="row form-group-lg">
+      <div class="form-group">
+        <label for="number">人数</label>
+        <div class="col-xs-4">
+          <div class="input-group">
+            <input id="number" type="text" class="form-control">
+            <div class="input-group-addon">人</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group-lg">
+      <label for="number">ご用件</label>
+      <div class="col-xs-12">
+        <div class="checkbox-inline">
+          <label class="radio">
+            <input id="purpose[1]" type="radio" name="purpose" value="制度利用相談"> 制度利用相談
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label class="radio">
+            <input id="purpose[2]" type="radio" name="purpose" value="技術相談"> 技術相談
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label class="radio">
+            <input id="purpose[3]" type="radio" name="purpose" value="事業等打合せ"> 事業等打合せ
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label class="radio">
+            <input id="purpose[4]" type="radio" name="purpose" value="その他" class="form-inline"> その他
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group-lg">
+      <div class="form-group">
+        <div class="col-xs-12">
+          <div class="input-group">
+              <div class="input-group-addon">その他の内容</div>
+              <input id="purpose_option" type="text" class="form-control">
+            </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset title="Step 3">
+    <legend>担当者の名前をご入力ください</legend>
+    <!-- inputs -->
+    <div class="row form-group-lg">
+      <label for="person">担当者名</label>
+      <div class="col-xs-6">
+        <input id="person" type="text" class="form-control">
+      </div>
+    </div>
+  </fieldset>
+
+  <input type="submit" value="確定" />
+  <input type="hidden" name="ctrl" value="guestcard" />
+  <input type="hidden" name="action" value="create_submit" />
+</form>
+
+<script type="text/javascript">
+$(function() {
+  $('form').stepy({
+    backLabel: '戻る',
+    nextLabel: '次へ',
+    description: false
+  });
+});
+</script>
