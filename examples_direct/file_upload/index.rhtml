@@ -1,0 +1,13 @@
+<%= header_section %>
+  <title>ファイルアップロードテスト</title>
+
+<%= body_section %>
+  <div class="al-page-header">ファイルアップロードテスト</div>
+  
+  <%= @form.make_tiny_form() %>
+  <%= @form.get_messages_by_html() %>
+
+  <p>この下へアップロードした画像が表示されます。</p>
+  <img src="get_image.rb">
+
+<%= footer_section %>

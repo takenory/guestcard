@@ -1,0 +1,43 @@
+<%= header_section %>
+  <title>登録一覧</title>
+
+<%= body_section %>
+  <div class="al-page-header">登録一覧</div>
+  <table class="al-list-table">
+    <tr>
+      <% @columns.each do |k| %>
+      <th><%=h @form.widgets[k].label %></th>
+      <% end %>
+      <th></th>
+    </tr>
+    <% @datas.each do |d| %>
+    <tr>
+      <% @columns.each do |k| %>
+      <td><%= @form.widgets[k].make_value( d[k] ) %></td>
+      <% end %>
+      <td class="al-navigation">
+	<a href="<%=h make_uri_key(d, :action=>"update") %>">変更</a>
+	<a href="<%=h make_uri_key(d, :action=>"delete") %>">削除</a>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <hr>
+
+  <div class="al-navigation">
+    <% if @persist.get_previous_offset() %>
+    <a href="<%=h make_uri( @request.merge({:offset=>@persist.get_previous_offset()}) ) %>">≪前ページ</a>
+    <% else %>
+    <span class="al-inactive">≪前ページ</span>
+    <% end %>
+
+    <% if @persist.get_next_offset() %>
+    <a href="<%=h make_uri( @request.merge({:offset=>@persist.get_next_offset()}) ) %>">次ページ≫</a>
+    <% else %>
+    <span class="al-inactive">次ページ≫</span>
+    <% end %>
+
+    <a href="<%=h make_uri( :action=>"create" ) %>">新規登録</a>
+  </div>
+
+<%= footer_section %>

@@ -1,0 +1,84 @@
+<h4>
+  本日はご訪問いただきありがとうございました。<br />
+  恐れ入りますが、Step1〜Step3の項目にご入力いただき<br />
+  ご訪問の手続きを行ってください。
+</h4>
+
+<form action="/index.rb?ctrl=guestcard&action=create_submit">
+  <fieldset title="Step 1">
+    <legend>代表者名の方のお名前と所属先をご入力ください</legend>
+    <!-- inputs -->
+    <div class="row">
+      <label for="name">代表者名</label>
+      <div class="col-xs-10">
+        <input id="name" type="text" class="form-control input-lg">
+      </div>
+    </div>
+    <div class="row">
+      <label for="organization">所属</label>
+      <div class="col-xs-10">
+        <input id="organization" type="text">
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset title="Step 2">
+    <legend>ご訪問の人数をご入力ください</legend>
+    <!-- inputs -->
+    <div class="row">
+      <label for="number">人数</label>
+      <div class="col-xs-6">
+        <input id="number" type="text">
+      </div>
+    </div>
+    <div class="row">
+      <label for="number">ご用件</label>
+    </div>
+  </fieldset>
+
+  <fieldset title="Step 3">
+    <legend>用件とITOC担当者の名前をご入力ください</legend>
+    <!-- inputs -->
+      <label for="purpose">用件</label>
+      <div class="checkbox-inline">
+        <label class="checkbox">
+          <input id="purpose" type="checkbox" value="制度利用相談"> 制度利用相談
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label class="checkbox">
+          <input id="purpose" type="checkbox" value="技術相談"> 技術相談
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label class="checkbox">
+          <input id="purpose" type="checkbox" value="事業等打合せ"> 事業等打合せ
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label class="checkbox">
+          <input id="purpose" type="checkbox" value="その他"> その他
+        </label>
+      </div>
+    <div class="row">
+      <label for="person">ITOC担当者</label>
+      <div class="col-xs-6">
+        <input id="person" type="text">
+      </div>
+    </div>
+  </fieldset>
+
+  <input type="submit" value="確定" />
+  <input type="hidden" name="ctrl" value="guests" />
+  <input type="hidden" name="action" value="create" />
+</form>
+
+<script type="text/javascript">
+$(function() {
+  $('form').stepy({
+    backLabel: '戻る',
+    nextLabel: '次へ',
+    description: false
+  });
+});
+</script>

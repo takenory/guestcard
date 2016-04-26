@@ -1,0 +1,32 @@
+<%= header_section %>
+<%= body_section %>
+
+<p>
+  <b>名前</b>
+  <%=h @address.name.force_encoding('utf-8') %>
+</p>
+
+<p>
+  <b>メールアドレス</b>
+  <%=h @address.mail.force_encoding('utf-8') %>
+</p>
+
+<p>
+  <b>郵便番号</b>
+  <%=h @address.zipcode.force_encoding('utf-8') %>
+</p>
+
+<p>
+  <b>住所</b>
+  <%=h @address.address.force_encoding('utf-8') %>
+</p>
+
+<p>
+  <b>電話番号</b>
+  <%=h @address.phone.force_encoding('utf-8') %>
+</p>
+
+
+<a href="edit.rb?id=<%=h @address.id %>">編集</a> | <a href="index.rb">戻る</a>
+
+<%= footer_section %>
