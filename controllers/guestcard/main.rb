@@ -12,6 +12,10 @@ class AlController
   end
   
   def action_list()
+    
+    @year = Time.now.year()
+    @month = Time.now.month()
+    
     # 検索条件の取得および調整
     form_search_condition = AlForm.new( 
       AlInteger.new( "total_rows", :min=>0 ),
@@ -73,6 +77,10 @@ class AlController
   end
 
   def action_csv()
+
+    @year = Time.now.year()
+    @month = Time.now.month()
+    
     # 検索条件の取得および調整
     form_search_condition = AlForm.new( 
       AlInteger.new( "total_rows", :min=>0 ),
