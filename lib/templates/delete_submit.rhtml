@@ -1,0 +1,19 @@
+<%= header_section %>
+  <title>データ削除</title>
+
+<%= body_section %>
+  <div class="al-page-header">データ削除</div>
+
+  <p><%= @result ? "削除しました" : "失敗しました" %></p>
+
+  <div style="margin: 1em 3em;">
+    <% @persist.pkeys.each do |k| %>
+    <%= @form.widgets[k].label %>: <%= @form.values[k] %><br>
+    <% end %>
+  </div>
+
+  <div class="al-navigation">
+    <a href="<%=h Alone::make_uri() %>">最初へ</a>
+  </div>
+
+<%= footer_section %>
