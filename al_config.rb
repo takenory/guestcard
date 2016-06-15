@@ -19,9 +19,9 @@ AL_ERROR_HANDLER = "handle_error_display"
 #AL_ERROR_HANDLER = "handle_error_static_page"
 
 # ログ（パラメータはLoggger::new メソッドに準ずる）
-#AL_LOG_DEV = "/PATH/TO/log.txt"
-#AL_LOG_AGE = 0
-#AL_LOG_SIZE = 1048576
+AL_LOG_DEV = "/tmp/alone-cgi.log"
+AL_LOG_AGE = 0
+AL_LOG_SIZE = 1048576
 
 
 ## for controller
