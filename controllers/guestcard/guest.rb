@@ -16,4 +16,12 @@ class Guest < AlPersistPostgres
   end
 
 
+  ##
+  # データをRDBへ、新規保存する。
+  #
+  def create()
+    @values[:created_at] = Time.now
+    super()
+  end
+
 end

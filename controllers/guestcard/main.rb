@@ -33,6 +33,8 @@ class GuestsController < AlController
     )
 
     @persist = Guest.new
+    @template_create = "layouts/application.html"
+    @template_create_submit = "layouts/application.html"
   end
 
 
@@ -40,28 +42,45 @@ class GuestsController < AlController
   # 新規登録フォーム表示
   #
   def action_create
-    log "CREATE"
     @part_template = "guestcard/_create.html"
-    @template_create = "layouts/application.html"
-#    super()
-    AlTemplate.run("layouts/application.html")
+    super()
   end
   alias action_index action_create
 
 
-
   ##
-  # 新規登録
+  # (MIF) 新規登録 確定アクション
+  #  TODO: @part_templateがあって、createとcreate_submitで使うファイルが
+  #        違うので、メソッドをコピーしてアレンジしている。
+  # 問題の本質は、このアプリでは全体レイアウト(layouts/application.html)を使い
+  # 個別のアクションに対するアレンジは@part_* にセットする戦略だが、
+  # Alone::mif側がそれを想定していない。
+  # mifは、@template_*でおおもとのテンプレートファイルをすげ替える戦略を
+  # 採用している。
+  # さて、どうする？
   #
-  def action_create_submit
-    log "CREATE_SUBMIT"
+  # １：実用的なアプリであれば、scaffoldは使わないのが当然。
+  #     mifはサンプルコード、コピペでも良いとする。
+  #
+  # ２：Alone::mifにエスカレーションすべき。
+  #
+  def action_create_submit()
+    delete_foreign_widget()
 
+    if ! @form.validate()
+      # バリデーションエラーならフォームへ戻す
+      @part_template = "guestcard/_create.html"
+      AlTemplate.run( @template_create || "#{AL_BASEDIR}/templates/form.rhtml" )
+      log "ERROR"
+      log @form.validateion_message
+      return
+    end
+
+    set_persist_values_from_form()
+    @result = @persist.create()
     @part_template = "guestcard/_create_submit.html"
-    @template_create_submit = "layouts/application.html"
-    super()
-#    AlTemplate.run("layouts/application.html")
+    AlTemplate.run( @template_create_submit || "#{AL_BASEDIR}/templates/form_submit.rhtml" )
   end
-
 
 
   ##
@@ -110,7 +129,7 @@ class GuestsController < AlController
 
     # データの取得
     #@datas = @persist.search( @search_condition )
-    @datas = @persist.select( "*", "from guests where created_at between '#{@year}-0#{@month}%' AND '#{@year}-0#{@month + 1}%' ", {} )
+    @datas = @persist.select( "*", "from guests where created_at between '#{@year}-#{@month}-01' AND '#{@year}-#{@month + 1}-01' ", {} )
     #puts "from guests where created_at between '#{@year}-0#{@month}%' AND '#{@year}-0#{@month + 1}%' "
 
     # 表示用カラム配列作成
@@ -128,7 +147,7 @@ class GuestsController < AlController
 
     # 表示開始
     #AlTemplate.run( @template_list || "#{AL_BASEDIR}/templates/list.rhtml" )
-    AlTemplate.run("layouts/_list.rhtml")
+    AlTemplate.run("guestcard/_list.rhtml")
   end
 
 
@@ -178,7 +197,7 @@ class GuestsController < AlController
     #puts form_search_condition[:month].to_i
 
     # データの取得
-    @datas = @persist.select( "*", "from guests where created_at between '#{@year}-0#{@month}%' AND '#{@year}-0#{@month + 1}%' ", {} )
+    @datas = @persist.select( "*", "from guests where created_at between '#{@year}-#{@month}-01' AND '#{@year}-#{@month + 1}-01' ", {} )
 
     # 表示用カラム配列作成
     @columns = []
