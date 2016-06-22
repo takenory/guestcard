@@ -3,20 +3,20 @@
   ご来場の手続きを行ってください。
 </h4>
 
-<form action="/index.rb">
+<form method="POST" action="/index.rb?ctrl=guestcard&action=create_submit">
   <fieldset title="Step 1">
     <legend>代表者の方のお名前と所属をご入力ください</legend>
     <!-- inputs -->
     <div class="row form-group-lg">
       <label for="name">代表者名</label>
       <div class="col-xs-6">
-        <input id="name" type="text" class="form-control input-lg">
+        <input id="name" name="name" type="text" class="form-control input-lg">
       </div>
     </div>
     <div class="row form-group-lg">
       <label for="organization">所属</label>
       <div class="col-xs-6">
-        <input id="organization" type="text" class="form-control input-lg">
+        <input id="organization" name="organization" type="text" class="form-control input-lg">
       </div>
     </div>
   </fieldset>
@@ -29,7 +29,7 @@
         <label for="number">人数</label>
         <div class="col-xs-4">
           <div class="input-group">
-            <input id="number" type="text" class="form-control">
+            <input id="number" name="number" type="text" class="form-control">
             <div class="input-group-addon">人</div>
           </div>
         </div>
@@ -65,7 +65,7 @@
         <div class="col-xs-12">
           <div class="input-group">
               <div class="input-group-addon">その他の内容</div>
-              <input id="purpose_option" type="text" class="form-control">
+              <input id="purpose_option" name="purpose_option" type="text" class="form-control">
             </div>
         </div>
       </div>
@@ -78,14 +78,12 @@
     <div class="row form-group-lg">
       <label for="person">担当者名</label>
       <div class="col-xs-6">
-        <input id="person" type="text" class="form-control">
+        <input id="person" name="person" type="text" class="form-control">
       </div>
     </div>
   </fieldset>
 
   <input type="submit" value="確定" />
-  <input type="hidden" name="ctrl" value="guestcard" />
-  <input type="hidden" name="action" value="create_submit" />
 </form>
 
 <script type="text/javascript">
