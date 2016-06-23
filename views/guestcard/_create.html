@@ -90,8 +90,32 @@
 $(function() {
   $('form').stepy({
     backLabel: '戻る',
+    block:    true,
     nextLabel: '次へ',
-    description: false
+    description: false,
+    validate: true
+  });
+
+  $.extend($.validator.messages, {
+    required: '*入力必須です'
+  });
+  var rules = {
+    name: {required: true},
+    organization: {required: true},
+    number: {required: true},
+    purpose: {required: true}
+  };
+  $('form').validate({
+    rules: rules,
+
+    //エラーメッセージ出力箇所調整
+    errorPlacement: function(error, element){
+      if (element.is(':radio')) {
+        error.appendTo(element.parent());
+      }else {
+        error.insertAfter(element);
+      }
+    }
   });
 });
 </script>
